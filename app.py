@@ -9,6 +9,15 @@ class BaseModel(Model):
   class Meta:
     database = db
 
+class Movie(Model):
+    name = CharField()
+    rating = IntegerField()
+    director = CharField()
+    date_released = DateField()
+    cast = CharField()
+    genre = CharField()
+    trailer = CharField()
+
 db.connect()
 db.drop_tables([Movie])
 db.create_tables([Movie])
@@ -21,19 +30,27 @@ app = Flask(__name__)
 def index():
   return "Hello, world!"
 
-@app.route('/endpoint', methods=['GET', 'PUT', 'POST', 'DELETE'])
-def endpoint():
+@app.route('/movie/', method=['GET', 'POST'])
+@app.route('/movie/<id>', methods=['GET', 'PUT', 'DELETE'])
+def endpoint(id=None):
   if request.method == 'GET':
-    return 'GET request'
+    if id:
+        return jsonify(model_to_dict(Movie.id == id))
+    else:
+        movieList = []
+        for movie in Movie.select():
+            movieList.append(model_to_dict(movie))
+        return jsonify(movieList)
 
-  if request.method == 'PUT':
-    return 'PUT request'
+    if request.method == 'PUT':
+        return 'PUT request'
+    
+    if request.method == 'POST':
+        new_movie = dict_to_model(Movie, request.get_json())
+        new_movie.save()
+        return jsonify({"success": True})
 
-  if request.method == 'POST':
-    return 'POST request'
-
-  if request.method == 'DELETE':
-    return 'DELETE request'
-
+    if request.method == 'DELETE':
+        return 'DELETE request'
 
 app.run(port=5000 debug=True)
