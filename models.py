@@ -10,3 +10,7 @@ class Movie(Model):
     director = CharField()
     date_released = DateField()
     cast = CharField()
+
+db.connect()
+db.drop_tables([Movie])
+db.create_tables([Movie])
