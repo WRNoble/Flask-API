@@ -20,12 +20,13 @@ db.connect()
 db.drop_tables([Movie])
 db.create_tables([Movie])
 
-Movie(title='Rogue One', vote_average='9', overview='Rebels acquire plans to the Death Star', release_date='December 20, 2016').save()
-Movie(title='Solo', vote_average='5', overview='Han Solo origin story', release_date='May 10, 2018').save()
+# Movie(title='Rogue One', vote_average='9', overview='Rebels acquire plans to the Death Star', release_date='December 20, 2016').save()
+# Movie(title='Solo', vote_average='5', overview='Han Solo origin story', release_date='May 10, 2018').save()
 Movie(title='Holiday Special', vote_average='1', overview='Chewy is a dead-beat dad', release_date='December 10, 1979').save()
 
 with open('./data.json', 'r') as data:
   movies = json.load(data)
+  print(data)
   
 for movie in movies:
     title = movie['title'],

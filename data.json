@@ -1,10 +1,4 @@
-{
-  "id": 10,
-  "name": "Star Wars Collection",
-  "overview": "An epic space-opera theatrical film series, which depicts the adventures of various characters \"a long time ago in a galaxy far, far away\u2026.\"",
-  "poster_path": "/r8Ph5MYXL04Qzu4QBbq2KjqwtkQ.jpg",
-  "backdrop_path": "/d8duYyyC9J5T825Hg7grmaabfxQ.jpg",
-  "parts": [
+
     {
       "id": 11,
       "video": false,
@@ -186,5 +180,3 @@
       "poster_path": "/kOVEVeg59E0wsnXmF9nrh6OmWII.jpg",
       "popularity": 41.54
     }
-  ]
-}
