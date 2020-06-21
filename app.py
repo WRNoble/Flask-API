@@ -1,4 +1,6 @@
 from flask import Flask, request, jsonify
+import datetime
+import json
 from peewee import *
 from playhouse.shortcuts import model_to_dict, dict_to_model
 
@@ -9,29 +11,28 @@ class BaseModel(Model):
     database = db
 
 class Movie(BaseModel):
-    name = CharField(max_length=255, unique = True)
-    rating = IntegerField()
-    director = CharField()
-    date_released = DateField()
-    cast = CharField()
+    title = CharField(max_length=255, unique = True)
+    vote_average = DecimalField()
+    overview = CharField(max_length=500)
+    release_date = DateTimeField()
 
 db.connect()
 db.drop_tables([Movie])
 db.create_tables([Movie])
 
-Movie(name='Rogue One', rating='9', director='Gareth Edwards', date_released='December 20, 2016', cast='sad girl and angry guy').save()
-Movie(name='Solo', rating='5', director='Ron Howard', date_released='May 10, 2018', cast='Emilia Clarke, Alden Ehrenreich, Donald Glover').save()
-Movie(name='Holiday Special', rating='1', director='He who shall not be named', date_released='December 10, 1979', cast='sadness').save()
+Movie(title='Rogue One', vote_average='9', overview='Rebels acquire plans to the Death Star', release_date='December 20, 2016').save()
+Movie(title='Solo', vote_average='5', overview='Han Solo origin story', release_date='May 10, 2018').save()
+Movie(title='Holiday Special', vote_average='1', overview='Chewy is a dead-beat dad', release_date='December 10, 1979').save()
 
-with open('./data.json') as moviesjson:
-  movies = json.load(moviesjson)
+with open('./data.json', 'w') as data:
+  movies = json.load(Movie)
   
 for movie in movies:
-    name = movie['name'],
-    rating = movie['rating'],
-    director = movie[director],
-    date_released =movie['date_released']
-    cast =movie['cast'].save()
+    title = movie['title'],
+    vote_average = movie['vote_average'],
+    overview = movie[overview],
+    release_date = movie['release_date'].save()
+   
 
 app = Flask(__name__)
 
