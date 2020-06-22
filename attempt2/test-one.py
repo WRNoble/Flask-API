@@ -38,6 +38,7 @@ def endpoint2():
         return jsonify(model_to_dict(Movie.get(Movie.name == name)))
       else:
         return "Sorry, the movie you requested could not be found."
+    return "connect"
 
 
 

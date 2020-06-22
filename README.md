@@ -1,4 +1,4 @@
-# Project Title
+# FLASK-API
 
 This Project is the final individual project with GA and the first done in Python.  The project is to acquire API data, transfer it to  PostgreSQL database, and then perform create and read methods on it. The project has taken the data from The Movie Database website and has "fetch" the collection data for the nine Star Wars movies.  Other standalone movies have been added to the database separately demonstrating the that the create method function properly.  
 

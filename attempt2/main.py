@@ -27,6 +27,7 @@ def endpoint1():
       print(movie)
       movieList.append(model_to_dict(movie))
   return jsonify(movieList)
+  # return "connected"
 
 @app.route('/movie/<name>', methods=['GET'])
 def endpoint2():
